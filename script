@@ -1,0 +1,21 @@
+// script.js
+
+let total = 0;
+
+function adicionarPedido(nome, preco) {
+    const listaPedidos = document.getElementById('lista-pedidos');
+    const pedidoItem = document.createElement('li');
+    pedidoItem.textContent = `${nome} - R$${preco.toFixed(2)}`;
+    listaPedidos.appendChild(pedidoItem);
+
+    total += preco;
+    document.getElementById('total').textContent = total.toFixed(2);
+}
+
+function finalizarPedido() {
+    alert(`Pedido finalizado! Total: R$${total.toFixed(2)}`);
+    const listaPedidos = document.getElementById('lista-pedidos');
+    listaPedidos.innerHTML = '';
+    total = 0;
+    document.getElementById('total').textContent = total.toFixed(2);
+}

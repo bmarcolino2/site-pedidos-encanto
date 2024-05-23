@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Exemplo</title>
+    <style>
+         * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .menu-item, .carrinho-item {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .menu-item:last-child, .carrinho-item:last-child {
+            border-bottom: none;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .delete-button {
+            background-color: #4b0082;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-left: 10px;
+            border: none;
+        }
+
+        .delete-button:hover {
+            background-color: #301b70;
+            transform: scale(1.1);
+        }
+
+        #total-carrinho {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Restaurante Exemplo</h1>
+        <nav>
+            <a href="#menu">Cardápio</a>
+            <a href="#carrinho">Carrinho</a>
+        </nav>
+    </header>
+    <main>
+        <section id="menu">
+            <h2>Cardápio</h2>
+            <div class="menu-item" data-name="Pizza" data-price="20">
+                <h3>Pizza</h3>
+                <p>R$20,00</p>
+                <button onclick="adicionarAoCarrinho('Pizza', 20)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Hambúrguer" data-price="15">
+                <h3>Hambúrguer</h3>
+                <p>R$15,00</p>
+                <button onclick="adicionarAoCarrinho('Hambúrguer', 15)">Adicionar ao Carrinho</button>
+            </div>
+            <!-- Adicione mais itens de menu aqui -->
+        </section>
+        <section id="carrinho">
+            <h2>Carrinho</h2>
+            <ul id="lista-carrinho"></ul>
+            <p>Total: R$<span id="total-carrinho">0.00</span></p>
+            <button onclick="finalizarCarrinho()">Finalizar Carrinho</button>
+        </section>
+    </main>
+    <script>
+        let totalCarrinho = 0;
+
+        function adicionarAoCarrinho(nome, preco) {
+            const listaCarrinho = document.getElementById('lista-carrinho');
+            const carrinhoItem = document.createElement('li');
+            carrinhoItem.textContent = `${nome} - R$${preco.toFixed(2)}`;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = "Apagar";
+            deleteButton.className = "delete-button";
+            deleteButton.onclick = () => removerDoCarrinho(carrinhoItem, preco);
+
+            carrinhoItem.appendChild(deleteButton);
+            listaCarrinho.appendChild(carrinhoItem);
+
+            totalCarrinho += preco;
+            document.getElementById('total-carrinho').textContent = totalCarrinho.toFixed(2);
+        }
+
+        function removerDoCarrinho(carrinhoItem, preco) {
+            carrinhoItem.remove();
+            totalCarrinho -= preco;
+            document.getElementById('total-carrinho').textContent = totalCarrinho.toFixed(2);
+        }
+
+        function finalizarCarrinho() {
+            const listaCarrinho = document.getElementById('lista-carrinho');
+            const pedido = listaCarrinho.innerText;
+            const total = document.getElementById('total-carrinho').textContent;
+
+            const mensagem = encodeURIComponent(`Olá! Gostaria de fazer o seguinte pedido: ${pedido}. Total: R$${total}.`);
+
+            window.open(`https://wa.me/5548988759989/?text=${mensagem}`, '_blank');
+
+            alert('Pedido encaminhado para o WhatsApp do estabelecimento.');
+            
+            // Limpar carrinho após finalizar pedido
+            while (listaCarrinho.firstChild) {
+                listaCarrinho.removeChild(listaCarrinho.firstChild);
+            }
+            totalCarrinho = 0;
+            document.getElementById('total-carrinho').textContent = '0.00';
+        }
+    </script>
+</body>
+</html>
