@@ -1,21 +1,45 @@
-// script.js
 
-let total = 0;
-
-function adicionarPedido(nome, preco) {
-    const listaPedidos = document.getElementById('lista-pedidos');
-    const pedidoItem = document.createElement('li');
-    pedidoItem.textContent = `${nome} - R$${preco.toFixed(2)}`;
-    listaPedidos.appendChild(pedidoItem);
-
-    total += preco;
-    document.getElementById('total').textContent = total.toFixed(2);
-}
-
-function finalizarPedido() {
-    alert(`Pedido finalizado! Total: R$${total.toFixed(2)}`);
-    const listaPedidos = document.getElementById('lista-pedidos');
-    listaPedidos.innerHTML = '';
-    total = 0;
-    document.getElementById('total').textContent = total.toFixed(2);
-}
+    <script>
+        // Função para adicionar um item ao carrinho
+        function adicionarAoCarrinho(nome, preco) {
+            const carrinho = document.getElementById('carrinho-itens');
+            const totalCarrinho = document.getElementById('total-carrinho');
+            
+            const item = document.createElement('div');
+            item.classList.add('carrinho-item');
+            item.innerHTML = `
+                <p>${nome} - R$${preco.toFixed(2)}</p>
+                <button class="delete-button" onclick="removerDoCarrinho(this)">Remover</button>
+            `;
+            carrinho.appendChild(item);
+            
+            // Atualiza o total do carrinho
+            const totalAtual = parseFloat(totalCarrinho.innerText.replace('Total: R$', '')) || 0;
+            totalCarrinho.innerText = `Total: R$${(totalAtual + preco).toFixed(2)}`;
+        }
+        
+        // Função para remover um item do carrinho
+        function removerDoCarrinho(botao) {
+            const carrinho = botao.parentNode.parentNode;
+            const totalCarrinho = document.getElementById('total-carrinho');
+            const item = botao.parentNode;
+            const preco = parseFloat(item.innerText.split('R$')[1]);
+            
+            carrinho.removeChild(item);
+            
+            // Atualiza o total do carrinho
+            const totalAtual = parseFloat(totalCarrinho.innerText.replace('Total: R$', ''));
+            totalCarrinho.innerText = `Total: R$${(totalAtual - preco).toFixed(2)}`;
+        }
+        
+        // Função para limpar o carrinho
+        function limparCarrinho() {
+            const carrinho = document.getElementById('carrinho-itens');
+            const totalCarrinho = document.getElementById('total-carrinho');
+            
+            carrinho.innerHTML = '';
+            totalCarrinho.innerText = 'Total: R$0.00';
+        }
+    </script>
+</body>
+</html>

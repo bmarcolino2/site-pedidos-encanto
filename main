@@ -1,147 +1,22 @@
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho de Compras</title>
-    <style>
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f8f8;
-        margin: 0;
-        padding: 0;
-        color: #333;
-    }
-
-    header {
-        background-color: #4b0082;
-        color: white;
-        padding: 1em;
-        text-align: center;
-    }
-
-    nav {
-        margin-top: 10px;
-    }
-
-    nav a {
-        color: white;
-        margin: 0 10px;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    nav a:hover {
-        color: #98fb98; 
-    }
-
-    main {
-        display: flex;
-        justify-content: space-around;
-        padding: 20px;
-        flex-wrap: wrap;
-    }
-
-    section {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 45%;
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        margin-bottom: 20px;
-        color: #4b0082; /* Roxo escuro */
-    }
-
-    .menu-category h3 {
-        color: #008000; /* Verde */
-        margin-top: 20px;
-    }
-
-    .menu-item {
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-    }
-
-    .menu-item:last-child {
-        border-bottom: none;
-    }
-
-    button {
-        background-color: #4b0082; /* Roxo escuro */
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    button:hover {
-        background-color: #6a0dad; /* Tom mais claro de roxo */
-        transform: scale(1.05);
-    }
-
-    .delete-button {
-        background-color: #8b0000; /* Vermelho escuro */
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        margin-left: 10px;
-        border: none;
-    }
-
-    .delete-button:hover {
-        background-color: #a52a2a;
-        transform: scale(1.1);
-    }
-    
-    #total-carrinho {
-        font-weight: bold;
-        color: #008000;
-    }
-    /* Estilos para os itens do carrinho */
-     .carrinho-item {
-         margin-bottom: 10px;
-     }
-     .delete-button {
-         margin-left: 10px;
-     }
-     img {
-        height: 100px;
-     }
-     .carrinho-button {
-    background-image: url('caminho_para_a_imagem.png');
-    background-size: contain; 
-    background-repeat: no-repeat; 
-    padding-left: 30px; }
-</style>
-</head>
-<body>
-    <header>
-            <h1>Encanto Lanches e Porções</h1>
+<header>
+        <h1>Restaurante Exemplo</h1>
+        <header>
+            <h1>Restaurante Exemplo</h1>
             <div id="cart-icon">
-                <img src="blob:https://web.whatsapp.com/cd780831-d0af-4f63-bfbe-159c7359115d" alt="Ícone da logo">
+                <img src="carrinho-icon.png" alt="Ícone do Carrinho">
                 <span id="cart-total">0</span>
             </div>
             <nav>
                 <a href="#menu">Cardápio</a>
             </nav>
+        </header>
         <section id="carrinho">
             <h2>Carrinho</h2>
             <ul id="lista-carrinho"></ul>
             <p>Total: R$<span id="total-carrinho">0.00</span></p>
             <button onclick="finalizarCarrinho()">Finalizar Carrinho</button>
         </section>
+    </html>
     
         <nav>
             <a href="#menu">Cardápio</a>
@@ -149,13 +24,8 @@
         </nav>
     </header>
     <main>
-        <section> 
-            <button class="carrinho-button">
-                <img src="https://w7.pngwing.com/pngs/833/426/png-transparent-shopping-cart-icon-shopping-cart-black-design-trade.png" alt="Ícone do carrinho">
-            </button>
-        </section>
-        <section>
-         <h2>Cardápio</h2> id="menu">
+        <section id="menu">
+            <h2>Cardápio</h2>
             <div class="menu-category">
                 <h3>Pastéis 20x10cm</h3>
                 <div class="menu-item" data-name="Carne" data-price="20">
@@ -475,58 +345,3 @@
     
 
       
-    <!-- Estrutura do carrinho de compras -->
-    <div id="carrinho-itens">
-        <!-- Itens do carrinho serão adicionados aqui -->
-    </div>
-    <div id="total-carrinho">Total: R$0.00</div>
-
-    <!-- Botões para adicionar itens ao carrinho -->
-    <button onclick="adicionarAoCarrinho('Produto 1', 10.00)">Adicionar Produto 1</button>
-    <button onclick="adicionarAoCarrinho('Produto 2', 20.00)">Adicionar Produto 2</button>
-
-    <!-- Script JavaScript -->
-    <script>
-        // Função para adicionar um item ao carrinho
-        function adicionarAoCarrinho(nome, preco) {
-            const carrinho = document.getElementById('carrinho-itens');
-            const totalCarrinho = document.getElementById('total-carrinho');
-            
-            const item = document.createElement('div');
-            item.classList.add('carrinho-item');
-            item.innerHTML = `
-                <p>${nome} - R$${preco.toFixed(2)}</p>
-                <button class="delete-button" onclick="removerDoCarrinho(this)">Remover</button>
-            `;
-            carrinho.appendChild(item);
-            
-            // Atualiza o total do carrinho
-            const totalAtual = parseFloat(totalCarrinho.innerText.replace('Total: R$', '')) || 0;
-            totalCarrinho.innerText = `Total: R$${(totalAtual + preco).toFixed(2)}`;
-        }
-        
-        // Função para remover um item do carrinho
-        function removerDoCarrinho(botao) {
-            const carrinho = botao.parentNode.parentNode;
-            const totalCarrinho = document.getElementById('total-carrinho');
-            const item = botao.parentNode;
-            const preco = parseFloat(item.innerText.split('R$')[1]);
-            
-            carrinho.removeChild(item);
-            
-            // Atualiza o total do carrinho
-            const totalAtual = parseFloat(totalCarrinho.innerText.replace('Total: R$', ''));
-            totalCarrinho.innerText = `Total: R$${(totalAtual - preco).toFixed(2)}`;
-        }
-        
-        // Função para limpar o carrinho
-        function limparCarrinho() {
-            const carrinho = document.getElementById('carrinho-itens');
-            const totalCarrinho = document.getElementById('total-carrinho');
-            
-            carrinho.innerHTML = '';
-            totalCarrinho.innerText = 'Total: R$0.00';
-        }
-    </script>
-</body>
-</html>
