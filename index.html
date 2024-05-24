@@ -1,532 +1,634 @@
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho de Compras</title>
-    <style>
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f8f8;
-        margin: 0;
-        padding: 0;
-        color: #333;
-    }
-
-    header {
-        background-color: #4b0082;
-        color: white;
-        padding: 1em;
-        text-align: center;
-    }
-
-    nav {
-        margin-top: 10px;
-    }
-
-    nav a {
-        color: white;
-        margin: 0 10px;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    nav a:hover {
-        color: #98fb98; 
-    }
-
-    main {
-        display: flex;
-        justify-content: space-around;
-        padding: 20px;
-        flex-wrap: wrap;
-    }
-
-    section {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 45%;
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        margin-bottom: 20px;
-        color: #4b0082; /* Roxo escuro */
-    }
-
-    .menu-category h3 {
-        color: #008000; /* Verde */
-        margin-top: 20px;
-    }
-
-    .menu-item {
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-    }
-
-    .menu-item:last-child {
-        border-bottom: none;
-    }
-
-    button {
-        background-color: #4b0082; /* Roxo escuro */
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    button:hover {
-        background-color: #6a0dad; /* Tom mais claro de roxo */
-        transform: scale(1.05);
-    }
-
-    .delete-button {
-        background-color: #8b0000; /* Vermelho escuro */
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        margin-left: 10px;
-        border: none;
-    }
-
-    .delete-button:hover {
-        background-color: #a52a2a;
-        transform: scale(1.1);
-    }
-    
-    #total-carrinho {
-        font-weight: bold;
-        color: #008000;
-    }
-    /* Estilos para os itens do carrinho */
-     .carrinho-item {
-         margin-bottom: 10px;
-     }
-     .delete-button {
-         margin-left: 10px;
-     }
-     img {
-        height: 100px;
-     }
-     .carrinho-button {
-    background-image: url('caminho_para_a_imagem.png');
-    background-size: contain; 
-    background-repeat: no-repeat; 
-    padding-left: 30px; }
-</style>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-            <h1>Encanto Lanches e Porções</h1>
-            <div id="cart-icon">
-                <img src="blob:https://web.whatsapp.com/cd780831-d0af-4f63-bfbe-159c7359115d" alt="Ícone da logo">
-                <span id="cart-total">0</span>
-            </div>
-            <nav>
-                <a href="#menu">Cardápio</a>
-            </nav>
-        <section id="carrinho">
-            <h2>Carrinho</h2>
-            <ul id="lista-carrinho"></ul>
-            <p>Total: R$<span id="total-carrinho">0.00</span></p>
-            <button onclick="finalizarCarrinho()">Finalizar Carrinho</button>
-        </section>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
     
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+    
+        header {
+            background-color: #4b0082;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+    
+        nav {
+            margin-top: 10px;
+        }
+    
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    
+        nav a:hover {
+            color: #98fb98; 
+        }
+    
+        main {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+    
+        section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            margin-bottom: 20px;
+        }
+    
+        h2 {
+            margin-bottom: 20px;
+            color: #4b0082; /* Roxo escuro */
+        }
+    
+        .menu-category h3 {
+            color: #008000; /* Verde */
+            margin-top: 20px;
+        }
+    
+        .menu-item {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+    
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+    
+        button {
+            background-color: #4b0082; /* Roxo escuro */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #6a0dad; /* Tom mais claro de roxo */
+            transform: scale(1.05);
+        }
+    
+        .delete-button {
+            background-color: #8b0000; /* Vermelho escuro */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-left: 10px;
+            border: none;
+        }
+    
+        .delete-button:hover {
+            background-color: #a52a2a;
+            transform: scale(1.1);
+        }
+    
+        #total-carrinho {
+            font-weight: bold;
+            color: #008000;
+        }
+    </style>
+    <header>
+        <div class="container">
+            <h1>Encanto Lanches e Porções</h1>
+            <div class="cart">
+                <button id="cart-btn">Carrinho <span id="cart-count">0</span></button>
+            </div>
+        </div>
         <nav>
             <a href="#menu">Cardápio</a>
+        </nav>
+        
+        <nav>
             <a href="#carrinho">Carrinho</a>
         </nav>
     </header>
     <main>
-        <section> 
-            <button class="carrinho-button">
-                <img src="https://w7.pngwing.com/pngs/833/426/png-transparent-shopping-cart-icon-shopping-cart-black-design-trade.png" alt="Ícone do carrinho">
-            </button>
-        </section>
-        <section>
-         <h2>Cardápio</h2> id="menu">
-            <div class="menu-category">
-                <h3>Pastéis 20x10cm</h3>
-                <div class="menu-item" data-name="Carne" data-price="20">
-                    <h4>Carne</h4>
-                    <p>R$20,00</p>
-                    <button onclick="adicionarAoCarrinho('Carne', 20)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Frango" data-price="20">
-                    <h4>Frango</h4>
-                    <p>R$20,00</p>
-                    <button onclick="adicionarAoCarrinho('Frango', 20)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Vegetariano" data-price="20">
-                    <h4>Vegetariano</h4>
-                    <p>R$20,00</p>
-                    <button onclick="adicionarAoCarrinho('Vegetariano', 20)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Calabresa" data-price="20">
-                    <h4>Calabresa</h4>
-                    <p>R$20,00</p>
-                    <button onclick="adicionarAoCarrinho('Calabresa', 20)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Queijo" data-price="20">
-                    <h4>Queijo</h4>
-                    <p>R$20,00</p>
-                    <button onclick="adicionarAoCarrinho('Queijo', 20)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Carne + Queijo" data-price="24">
-                    <h4>Carne + Queijo</h4>
-                    <p>R$24,00</p>
-                    <button onclick="adicionarAoCarrinho('Carne + Queijo', 24)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Frango + Catupiry" data-price="24">
-                    <h4>Frango + Catupiry</h4>
-                    <p>R$24,00</p>
-                    <button onclick="adicionarAoCarrinho('Frango + Catupiry', 24)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Calabresa + Queijo" data-price="24">
-                    <h4>Calabresa + Queijo</h4>
-                    <p>R$24,00</p>
-                    <button onclick="adicionarAoCarrinho('Calabresa + Queijo', 24)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Palmito" data-price="24">
-                    <h4>Palmito</h4>
-                    <p>R$24,00</p>
-                    <button onclick="adicionarAoCarrinho('Palmito', 24)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Pizza" data-price="24">
-                    <h4>Pizza</h4>
-                    <p>R$24,00</p>
-                    <button onclick="adicionarAoCarrinho('Pizza', 24)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Camarão" data-price="28">
-                    <h4>Camarão</h4>
-                    <p>R$28,00</p>
-                    <button onclick="adicionarAoCarrinho('Camarão', 28)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Cheddar" data-price="5">
-                    <h4>Cheddar</h4>
-                    <p>R$5,00</p>
-                    <button onclick="adicionarAoCarrinho('Cheddar', 5)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Catupiry" data-price="5">
-                    <h4>Catupiry</h4>
-                    <p>R$5,00</p>
-                    <button onclick="adicionarAoCarrinho('Catupiry', 5)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Azeitona" data-price="5">
-                    <h4>Azeitona</h4>
-                    <p>R$5,00</p>
-                    <button onclick="adicionarAoCarrinho('Azeitona', 5)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Milho" data-price="4">
-                    <h4>Milho</h4>
-                    <p>R$4,00</p>
-                    <button onclick="adicionarAoCarrinho('Milho', 4)">Adicionar ao Carrinho</button>
-                </div>
-                <h3>Pastéis Doces</h3>
-                <div class="menu-item" data-name="Doce de Leite com Banana e Canela" data-price="16">
-                    <h4>Doce de Leite com Banana e Canela</h4>
-                    <p>R$16,00</p>
-                    <button onclick="adicionarAoCarrinho('Doce de Leite com Banana e Canela', 16)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Doce de Leite com Banana" data-price="16">
-                    <h4>Doce de Leite com Banana</h4>
-                    <p>R$16,00</p>
-                    <button onclick="adicionarAoCarrinho('Doce de Leite com Banana', 16)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Morango com Nutella" data-price="24">
-                    <h4>Morango com Nutella</h4>
-                    <p>R$24,00</p>
-                    <button onclick="adicionarAoCarrinho('Morango com Nutella', 24)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Chocolate ao Leite ou Branco" data-price="24">
-                    <h4>Chocolate ao Leite ou Branco</h4>
-                    <p>R$24,00</p>
-                    <button onclick="adicionarAoCarrinho('Chocolate ao Leite ou Branco', 24)">Adicionar ao Carrinho</button>
-                </div>
+        <div class="container">
+            <section class="products">
+                <article class="product">
+                    <img src="https://picsum.photos/300/300" alt="">
+                    <h2>Product 1</h2>
+                    <p>Price: $10.00</p>
+                    <button class="add-to-cart" data-id="1" data-name="Product 1" data-price="10.00">Adicionar ao Carrinho</button>
+                </article>
+                <article class="product">
+                    <img src="https://picsum.photos/300/300" alt="">
+                    <h2>Product 2</h2>
+                    <p>Price: $20.00</p>
+                    <button class="add-to-cart" data-id="2" data-name="Product 2" data-price="20.00">Adicionar ao Carrinho</button>
+                </article>
+                <article class="product">
+                    <img src="https://picsum.photos/300/300" alt="">
+                    <h2>Product 3</h2>
+                    <p>Price: $30.00</p>
+                    <button class="add-to-cart" data-id="3" data-name="Product 3" data-price="30.00">Adicionar ao Carrinho</button>
+                </article>
+            </section>
+        </div>
+        <h2>Cardápio</h2>
+        <div class="menu-category">
+            <h3>Pastéis 20x10cm</h3>
+            <div class="menu-item" data-name="Carne" data-price="20">
+                <h4>Carne</h4>
+                <p>R$20,00</p>
+                <button onclick="adicionarAoCarrinho('Carne', 20)">Adicionar ao Carrinho</button>
             </div>
-            
-            <div class="menu-category">
-                <h3>Lanches</h3>
-                <div class="menu-item" data-name="Misto Quente" data-price="15">
-                    <h4>Misto Quente</h4>
-                    <p>R$15,00</p>
-                    <button onclick="adicionarAoCarrinho('Misto Quente', 15)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Queijo Quente" data-price="15">
-                    <h4>Queijo Quente</h4>
-                    <p>R$15,00</p>
-                    <button onclick="adicionarAoCarrinho('Queijo Quente', 15)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="X-Burguer" data-price="22">
-                    <h4>X-Burguer</h4>
-                    <p>R$22,00</p>
-                    <button onclick="adicionarAoCarrinho('X-Burguer', 22)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="X-Salada" data-price="26">
-                    <h4>X-Salada</h4>
-                    <p>R$26,00</p>
-                    <button onclick="adicionarAoCarrinho('X-Salada', 26)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="X-EGG" data-price="27">
-                    <h4>X-EGG</h4>
-                    <p>R$27,00</p>
-                    <button onclick="adicionarAoCarrinho('X-EGG', 27)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="X-Calabresa" data-price="28">
-                    <h4>X-Calabresa</h4>
-                    <p>R$28,00</p>
-                    <button onclick="adicionarAoCarrinho('X-Calabresa', 28)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="X-Bacon" data-price="30">
-                    <h4>X-Bacon</h4>
-                    <p>R$30,00</p>
-                    <button onclick="adicionarAoCarrinho('X-Bacon', 30)">Adicionar ao Carrinho</button>
-                </div>
-                <h3>Adicionais dos Lanches</h3>
-                <div class="menu-item" data-name="Hambúrguer extra" data-price="10">
-                    <h4>Hambúrguer extra</h4>
-                    <p>R$10,00</p>
-                    <button onclick="adicionarAoCarrinho('Hambúrguer extra', 10)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Bacon" data-price="6">
-                    <h4>Bacon</h4>
-                    <p>R$6,00</p>
-                    <button onclick="adicionarAoCarrinho('Bacon', 6)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Cheddar" data-price="5">
-                    <h4>Cheddar</h4>
-                    <p>R$5,00</p>
-                    <button onclick="adicionarAoCarrinho('Cheddar', 5)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Catupiry" data-price="5">
-                    <h4>Catupiry</h4>
-                    <p>R$5,00</p>
-                    <button onclick="adicionarAoCarrinho('Catupiry', 5)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Batata Palha" data-price="5">
-                    <h4>Batata Palha</h4>
-                    <p>R$5,00</p>
-                    <button onclick="adicionarAoCarrinho('Batata Palha', 5)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Milho" data-price="4">
-                    <h4>Milho</h4>
-                    <p>R$4,00</p>
-                    <button onclick="adicionarAoCarrinho('Milho', 4)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Ovo" data-price="4">
-                    <h4>Ovo</h4>
-                    <p>R$4,00</p>
-                    <button onclick="adicionarAoCarrinho('Ovo', 4)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Ervilha" data-price="4">
-                    <h4>Ervilha</h4>
-                    <p>R$4,00</p>
-                    <button onclick="adicionarAoCarrinho('Ervilha', 4)">Adicionar ao Carrinho</button>
-                </div>
+            <div class="menu-item" data-name="Frango" data-price="20">
+                <h4>Frango</h4>
+                <p>R$20,00</p>
+                <button onclick="adicionarAoCarrinho('Frango', 20)">Adicionar ao Carrinho</button>
             </div>
-            <div class="menu-category">
-                <h3>Petiscos</h3>
-                <div class="menu-item" data-name="Bolinho de Siri (15 unidades)" data-price="70">
-                    <h4>Bolinho de Siri (15 unidades)</h4>
-                    <p>R$70,00</p>
-                    <button onclick="adicionarAoCarrinho('Bolinho de Siri (15 unidades)', 70)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="6 Bolinhos de Siri ou Peixe" data-price="35">
-                    <h4>6 Bolinhos de Siri ou Peixe</h4>
-                    <p>R$35,00</p>
-                    <button onclick="adicionarAoCarrinho('6 Bolinhos de Siri ou Peixe', 35)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Calabresa Acebolada (300g)" data-price="40">
-                    <h4>Calabresa Acebolada (300g)</h4>
-                    <p>R$40,00</p>
-                    <button onclick="adicionarAoCarrinho('Calabresa Acebolada (300g)', 40)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Anéis de Lula a Milanesa" data-price="70">
-                    <h4>Anéis de Lula a Milanesa</h4>
-                    <p>R$70,00</p>
-                    <button onclick="adicionarAoCarrinho('Anéis de Lula a Milanesa', 70)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Anéis de Cebola a Milanesa" data-price="40">
-                    <h4>Anéis de Cebola a Milanesa</h4>
-                    <p>R$40,00</p>
-                    <button onclick="adicionarAoCarrinho('Anéis de Cebola a Milanesa', 40)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Camarão a Milanesa" data-price="85">
-                    <h4>Camarão a Milanesa</h4>
-                    <p>R$85,00</p>
-                    <button onclick="adicionarAoCarrinho('Camarão a Milanesa', 85)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Iscas de Peixe a Milanesa" data-price="60">
-                    <h4>Iscas de Peixe a Milanesa</h4>
-                    <p>R$60,00</p>
-                    <button onclick="adicionarAoCarrinho('Iscas de Peixe a Milanesa', 60)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Iscas de Frango a Milanesa" data-price="45">
-                    <h4>Iscas de Frango a Milanesa</h4>
-                    <p>R$45,00</p>
-                    <button onclick="adicionarAoCarrinho('Iscas de Frango a Milanesa', 45)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Batata-Frita" data-price="30">
-                    <h4>Batata-Frita</h4>
-                    <p>R$30,00</p>
-                    <button onclick="adicionarAoCarrinho('Batata-Frita', 30)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Batata-Frita com Cheddar e Bacon" data-price="40">
-                    <h4>Batata-Frita com Cheddar e Bacon</h4>
-                    <p>R$40,00</p>
-                    <button onclick="adicionarAoCarrinho('Batata-Frita com Cheddar e Bacon', 40)">Adicionar ao Carrinho</button>
-                </div>
+            <div class="menu-item" data-name="Vegetariano" data-price="20">
+                <h4>Vegetariano</h4>
+                <p>R$20,00</p>
+                <button onclick="adicionarAoCarrinho('Vegetariano', 20)">Adicionar ao Carrinho</button>
             </div>
-            
-            <div class="menu-category">
-                <h3>Combos Promocionais</h3>
-                <div class="menu-item" data-name="1 X-Salada + batata-frita (100g) + 1 Refrigerante (200ml)" data-price="32.90">
-                    <h4>1 X-Salada + batata-frita (100g) + 1 Refrigerante (200ml)</h4>
-                    <p>R$32,90</p>
-                    <button onclick="adicionarAoCarrinho('1 X-Salada + batata-frita (100g) + 1 Refrigerante (200ml)', 32.90)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="2 X-saladas + 2 Batata-frita (100g cada) + 2 Refrigerante (200ml)" data-price="59.90">
-                    <h4>2 X-saladas + 2 Batata-frita (100g cada) + 2 Refrigerante (200ml)</h4>
-                    <p>R$59,90</p>
-                    <button onclick="adicionarAoCarrinho('2 X-saladas + 2 Batata-frita (100g cada) + 2 Refrigerante (200ml)', 59.90)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="1 X-Burguer + Batata-Frita (100g) + 1 Refrigerante (200ml )" data-price="29.90">
-                    <h4>1 X-Burguer + Batata-Frita (100g) + 1 Refrigerante (200ml )</h4>
-                    <p>R$29,90</p>
-                    <button onclick="adicionarAoCarrinho('1 X-Burguer + Batata-Frita (100g) + 1 Refrigerante (200ml )', 29.90)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="1 Pastel especial + 1 refrigerante 200ml" data-price="27.90">
-                    <h4>1 Pastel especial + 1 refrigerante 200ml</h4>
-                    <p>R$27,90</p>
-                    <button onclick="adicionarAoCarrinho('1 Pastel especial + 1 refrigerante 200ml', 27.90)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="2 Pastéis tradicionais + 2 Refrigerantes 200ml" data-price="44.90">
-                    <h4>2 Pastéis tradicionais + 2 Refrigerantes 200ml</h4>
-                    <p>R$44,90</p>
-                    <button onclick="adicionarAoCarrinho('2 Pastéis tradicionais + 2 Refrigerantes 200ml', 44.90)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Iscas de Frango a milanesa (250g) + Batata-Frita (250g)" data-price="49.90">
-                    <h4>Iscas de Frango a milanesa (250g) + Batata-Frita (250g)</h4>
-                    <p>R$49,90</p>
-                    <button onclick="adicionarAoCarrinho('Iscas de Frango a milanesa (250g) + Batata-Frita (250g)', 49.90)">Adicionar ao Carrinho</button>
-                </div>
+            <div class="menu-item" data-name="Calabresa" data-price="20">
+                <h4>Calabresa</h4>
+                <p>R$20,00</p>
+                <button onclick="adicionarAoCarrinho('Calabresa', 20)">Adicionar ao Carrinho</button>
             </div>
-            
-            <div class="menu-category">
-                <h3>Combo de Frutos do Mar</h3>
-                <div class="menu-item" data-name="Camarão a milanesa (250g) + Iscas de peixe a milanesa (250g) + Batata-Frita (250g) + 6 Bolinhos (Este combo serve até duas pessoas)" data-price="139.90">
-                    <h4>Camarão a milanesa (250g) + Iscas de peixe a milanesa (250g) + Batata-Frita (250g) + 6 Bolinhos (Este combo serve até duas pessoas)</h4>
-                    <p>R$139,90</p>
-                    <button onclick="adicionarAoCarrinho('Camarão a milanesa (250g) + Iscas de peixe a milanesa (250g) + Batata-Frita (250g) + 6 Bolinhos (Este combo serve até duas pessoas)', 139.90)">Adicionar ao Carrinho</button>
-                </div>
+            <div class="menu-item" data-name="Queijo" data-price="20">
+                <h4>Queijo</h4>
+                <p>R$20,00</p>
+                <button onclick="adicionarAoCarrinho('Queijo', 20)">Adicionar ao Carrinho</button>
             </div>
-            
-            <div class="menu-category">
-                <h3>Açaí</h3>
-                <div class="menu-item" data-name="300 ml" data-price="20">
-                    <h4>300 ml</h4>
-                    <p>R$20,00</p>
-                    <button onclick="adicionarAoCarrinho('300 ml', 20)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="500ml" data-price="30">
-                    <h4>500ml</h4>
-                    <p>R$30,00</p>
-                    <button onclick="adicionarAoCarrinho('500ml', 30)">Adicionar ao Carrinho</button>
-                </div>
-                <h3>Escolha até 3 acompanhamentos:</h3>
-                <div class="menu-item" data-name="Granola" data-price="0">
-                    <h4>Granola</h4>
-                    <p>Grátis</p>
-                    <button onclick="adicionarAoCarrinho('Granola', 0)">Adicionar ao Carrinho</button>
-                </div>
-                <div class="menu-item" data-name="Leite
-                <h4>Leite em pó</h4>
-                <p>Grátis</p>
-                <button onclick="adicionarAoCarrinho('Leite em pó', 0)">Adicionar ao Carrinho</button>
+            <div class="menu-item" data-name="Carne + Queijo" data-price="24">
+                <h4>Carne + Queijo</h4>
+                <p>R$24,00</p>
+                <button onclick="adicionarAoCarrinho('Carne + Queijo', 24)">Adicionar ao Carrinho</button>
             </div>
-            <div class="menu-item" data-name="Leite condensado" data-price="0">
-                <h4>Leite condensado</h4>
-                <p>Grátis</p>
-                <button onclick="adicionarAoCarrinho('Leite condensado', 0)">Adicionar ao Carrinho</button>
+            <div class="menu-item" data-name="Frango + Catupiry" data-price="24">
+                <h4>Frango + Catupiry</h4>
+                <p>R$24,00</p>
+                <button onclick="adicionarAoCarrinho('Frango + Catupiry', 24)">Adicionar ao Carrinho</button>
             </div>
-            <div class="menu-item" data-name="Paçoca" data-price="0">
-                <h4>Paçoca</h4>
-                <p>Grátis</p>
-                <button onclick="adicionarAoCarrinho('Paçoca', 0)">Adicionar ao Carrinho</button>
+            <div class="menu-item" data-name="Calabresa + Queijo" data-price="24">
+                <h4>Calabresa + Queijo</h4>
+                <p>R$24,00</p>
+                <button onclick="adicionarAoCarrinho('Calabresa + Queijo', 24)">Adicionar ao Carrinho</button>
             </div>
-            <div class="menu-item" data-name="Leite em pó" data-price="0">
-                <h4>Leite em pó</h4>
-                <p>Grátis</p>
-                <button onclick="adicionarAoCarrinho('Leite em pó', 0)">Adicionar ao Carrinho</button>
+            <div class="menu-item" data-name="Palmito" data-price="24">
+                <h4>Palmito</h4>
+                <p>R$24,00</p>
+                <button onclick="adicionarAoCarrinho('Palmito', 24)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Pizza" data-price="24">
+                <h4>Pizza</h4>
+                <p>R$24,00</p>
+                <button onclick="adicionarAoCarrinho('Pizza', 24)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Camarão" data-price="28">
+                <h4>Camarão</h4>
+                <p>R$28,00</p>
+                <button onclick="adicionarAoCarrinho('Camarão', 28)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Cheddar" data-price="5">
+                <h4>Cheddar</h4>
+                <p>R$5,00</p>
+                <button onclick="adicionarAoCarrinho('Cheddar', 5)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Catupiry" data-price="5">
+                <h4>Catupiry</h4>
+                <p>R$5,00</p>
+                <button onclick="adicionarAoCarrinho('Catupiry', 5)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Azeitona" data-price="5">
+                <h4>Azeitona</h4>
+                <p>R$5,00</p>
+                <button onclick="adicionarAoCarrinho('Azeitona', 5)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Milho" data-price="4">
+                <h4>Milho</h4>
+                <p>R$4,00</p>
+                <button onclick="adicionarAoCarrinho('Milho', 4)">Adicionar ao Carrinho</button>
+            </div>
+            <h3>Pastéis Doces</h3>
+            <div class="menu-item" data-name="Doce de Leite com Banana e Canela" data-price="16">
+                <h4>Doce de Leite com Banana e Canela</h4>
+                <p>R$16,00</p>
+                <button onclick="adicionarAoCarrinho('Doce de Leite com Banana e Canela', 16)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Doce de Leite com Banana" data-price="16">
+                <h4>Doce de Leite com Banana</h4>
+                <p>R$16,00</p>
+                <button onclick="adicionarAoCarrinho('Doce de Leite com Banana', 16)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Morango com Nutella" data-price="24">
+                <h4>Morango com Nutella</h4>
+                <p>R$24,00</p>
+                <button onclick="adicionarAoCarrinho('Morango com Nutella', 24)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Chocolate ao Leite ou Branco" data-price="24">
+                <h4>Chocolate ao Leite ou Branco</h4>
+                <p>R$24,00</p>
+                <button onclick="adicionarAoCarrinho('Chocolate ao Leite ou Branco', 24)">Adicionar ao Carrinho</button>
             </div>
         </div>
-    </section>
-    
-
-      
-    <!-- Estrutura do carrinho de compras -->
-    <div id="carrinho-itens">
-        <!-- Itens do carrinho serão adicionados aqui -->
+        
+        <div class="menu-category">
+            <h3>Lanches</h3>
+            <div class="menu-item" data-name="Misto Quente" data-price="15">
+                <h4>Misto Quente</h4>
+                <p>R$15,00</p>
+                <button onclick="adicionarAoCarrinho('Misto Quente', 15)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Queijo Quente" data-price="15">
+                <h4>Queijo Quente</h4>
+                <p>R$15,00</p>
+                <button onclick="adicionarAoCarrinho('Queijo Quente', 15)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="X-Burguer" data-price="22">
+                <h4>X-Burguer</h4>
+                <p>R$22,00</p>
+                <button onclick="adicionarAoCarrinho('X-Burguer', 22)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="X-Salada" data-price="26">
+                <h4>X-Salada</h4>
+                <p>R$26,00</p>
+                <button onclick="adicionarAoCarrinho('X-Salada', 26)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="X-EGG" data-price="27">
+                <h4>X-EGG</h4>
+                <p>R$27,00</p>
+                <button onclick="adicionarAoCarrinho('X-EGG', 27)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="X-Calabresa" data-price="28">
+                <h4>X-Calabresa</h4>
+                <p>R$28,00</p>
+                <button onclick="adicionarAoCarrinho('X-Calabresa', 28)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="X-Bacon" data-price="30">
+                <h4>X-Bacon</h4>
+                <p>R$30,00</p>
+                <button onclick="adicionarAoCarrinho('X-Bacon', 30)">Adicionar ao Carrinho</button>
+            </div>
+            <h3>Adicionais dos Lanches</h3>
+            <div class="menu-item" data-name="Hambúrguer extra" data-price="10">
+                <h4>Hambúrguer extra</h4>
+                <p>R$10,00</p>
+                <button onclick="adicionarAoCarrinho('Hambúrguer extra', 10)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Bacon" data-price="6">
+                <h4>Bacon</h4>
+                <p>R$6,00</p>
+                <button onclick="adicionarAoCarrinho('Bacon', 6)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Cheddar" data-price="5">
+                <h4>Cheddar</h4>
+                <p>R$5,00</p>
+                <button onclick="adicionarAoCarrinho('Cheddar', 5)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Catupiry" data-price="5">
+                <h4>Catupiry</h4>
+                <p>R$5,00</p>
+                <button onclick="adicionarAoCarrinho('Catupiry', 5)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Batata Palha" data-price="5">
+                <h4>Batata Palha</h4>
+                <p>R$5,00</p>
+                <button onclick="adicionarAoCarrinho('Batata Palha', 5)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Milho" data-price="4">
+                <h4>Milho</h4>
+                <p>R$4,00</p>
+                <button onclick="adicionarAoCarrinho('Milho', 4)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Ovo" data-price="4">
+                <h4>Ovo</h4>
+                <p>R$4,00</p>
+                <button onclick="adicionarAoCarrinho('Ovo', 4)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Ervilha" data-price="4">
+                <h4>Ervilha</h4>
+                <p>R$4,00</p>
+                <button onclick="adicionarAoCarrinho('Ervilha', 4)">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+        <div class="menu-category">
+            <h3>Petiscos</h3>
+            <div class="menu-item" data-name="Bolinho de Siri (15 unidades)" data-price="70">
+                <h4>Bolinho de Siri (15 unidades)</h4>
+                <p>R$70,00</p>
+                <button onclick="adicionarAoCarrinho('Bolinho de Siri (15 unidades)', 70)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="6 Bolinhos de Siri ou Peixe" data-price="35">
+                <h4>6 Bolinhos de Siri ou Peixe</h4>
+                <p>R$35,00</p>
+                <button onclick="adicionarAoCarrinho('6 Bolinhos de Siri ou Peixe', 35)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Calabresa Acebolada (300g)" data-price="40">
+                <h4>Calabresa Acebolada (300g)</h4>
+                <p>R$40,00</p>
+                <button onclick="adicionarAoCarrinho('Calabresa Acebolada (300g)', 40)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Anéis de Lula a Milanesa" data-price="70">
+                <h4>Anéis de Lula a Milanesa</h4>
+                <p>R$70,00</p>
+                <button onclick="adicionarAoCarrinho('Anéis de Lula a Milanesa', 70)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Anéis de Cebola a Milanesa" data-price="40">
+                <h4>Anéis de Cebola a Milanesa</h4>
+                <p>R$40,00</p>
+                <button onclick="adicionarAoCarrinho('Anéis de Cebola a Milanesa', 40)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Camarão a Milanesa" data-price="85">
+                <h4>Camarão a Milanesa</h4>
+                <p>R$85,00</p>
+                <button onclick="adicionarAoCarrinho('Camarão a Milanesa', 85)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Iscas de Peixe a Milanesa" data-price="60">
+                <h4>Iscas de Peixe a Milanesa</h4>
+                <p>R$60,00</p>
+                <button onclick="adicionarAoCarrinho('Iscas de Peixe a Milanesa', 60)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Iscas de Frango a Milanesa" data-price="45">
+                <h4>Iscas de Frango a Milanesa</h4>
+                <p>R$45,00</p>
+                <button onclick="adicionarAoCarrinho('Iscas de Frango a Milanesa', 45)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Batata-Frita" data-price="30">
+                <h4>Batata-Frita</h4>
+                <p>R$30,00</p>
+                <button onclick="adicionarAoCarrinho('Batata-Frita', 30)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Batata-Frita com Cheddar e Bacon" data-price="40">
+                <h4>Batata-Frita com Cheddar e Bacon</h4>
+                <p>R$40,00</p>
+                <button onclick="adicionarAoCarrinho('Batata-Frita com Cheddar e Bacon', 40)">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+        
+        <div class="menu-category">
+            <h3>Combos Promocionais</h3>
+            <div class="menu-item" data-name="1 X-Salada + batata-frita (100g) + 1 Refrigerante (200ml)" data-price="32.90">
+                <h4>1 X-Salada + batata-frita (100g) + 1 Refrigerante (200ml)</h4>
+                <p>R$32,90</p>
+                <button onclick="adicionarAoCarrinho('1 X-Salada + batata-frita (100g) + 1 Refrigerante (200ml)', 32.90)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="2 X-saladas + 2 Batata-frita (100g cada) + 2 Refrigerante (200ml)" data-price="59.90">
+                <h4>2 X-saladas + 2 Batata-frita (100g cada) + 2 Refrigerante (200ml)</h4>
+                <p>R$59,90</p>
+                <button onclick="adicionarAoCarrinho('2 X-saladas + 2 Batata-frita (100g cada) + 2 Refrigerante (200ml)', 59.90)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="1 X-Burguer + Batata-Frita (100g) + 1 Refrigerante (200ml )" data-price="29.90">
+                <h4>1 X-Burguer + Batata-Frita (100g) + 1 Refrigerante (200ml )</h4>
+                <p>R$29,90</p>
+                <button onclick="adicionarAoCarrinho('1 X-Burguer + Batata-Frita (100g) + 1 Refrigerante (200ml )', 29.90)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="1 Pastel especial + 1 refrigerante 200ml" data-price="27.90">
+                <h4>1 Pastel especial + 1 refrigerante 200ml</h4>
+                <p>R$27,90</p>
+                <button onclick="adicionarAoCarrinho('1 Pastel especial + 1 refrigerante 200ml', 27.90)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="2 Pastéis tradicionais + 2 Refrigerantes 200ml" data-price="44.90">
+                <h4>2 Pastéis tradicionais + 2 Refrigerantes 200ml</h4>
+                <p>R$44,90</p>
+                <button onclick="adicionarAoCarrinho('2 Pastéis tradicionais + 2 Refrigerantes 200ml', 44.90)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Iscas de Frango a milanesa (250g) + Batata-Frita (250g)" data-price="49.90">
+                <h4>Iscas de Frango a milanesa (250g) + Batata-Frita (250g)</h4>
+                <p>R$49,90</p>
+                <button onclick="adicionarAoCarrinho('Iscas de Frango a milanesa (250g) + Batata-Frita (250g)', 49.90)">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+        
+        <div class="menu-category">
+            <h3>Combo de Frutos do Mar</h3>
+            <div class="menu-item" data-name="Camarão a milanesa (250g) + Iscas de peixe a milanesa (250g) + Batata-Frita (250g) + 6 Bolinhos (Este combo serve até duas pessoas)" data-price="139.90">
+                <h4>Camarão a milanesa (250g) + Iscas de peixe a milanesa (250g) + Batata-Frita (250g) + 6 Bolinhos (Este combo serve até duas pessoas)</h4>
+                <p>R$139,90</p>
+                <button onclick="adicionarAoCarrinho('Camarão a milanesa (250g) + Iscas de peixe a milanesa (250g) + Batata-Frita (250g) + 6 Bolinhos (Este combo serve até duas pessoas)', 139.90)">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+        
+        <div class="menu-category">
+            <h3>Açaí</h3>
+            <div class="menu-item" data-name="300 ml" data-price="20">
+                <h4>300 ml</h4>
+                <p>R$20,00</p>
+                <button onclick="adicionarAoCarrinho('300 ml', 20)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="500ml" data-price="30">
+                <h4>500ml</h4>
+                <p>R$30,00</p>
+                <button onclick="adicionarAoCarrinho('500ml', 30)">Adicionar ao Carrinho</button>
+            </div>
+            <h3>Escolha até 3 acompanhamentos:</h3>
+            <div class="menu-item" data-name="Granola" data-price="0">
+                <h4>Granola</h4>
+                <p>Grátis</p>
+                <button onclick="adicionarAoCarrinho('Granola', 0)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="menu-item" data-name="Leite
+            <h4>Leite em pó</h4>
+            <p>Grátis</p>
+            <button onclick="adicionarAoCarrinho('Leite em pó', 0)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="menu-item" data-name="Leite condensado" data-price="0">
+            <h4>Leite condensado</h4>
+            <p>Grátis</p>
+            <button onclick="adicionarAoCarrinho('Leite condensado', 0)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="menu-item" data-name="Paçoca" data-price="0">
+            <h4>Paçoca</h4>
+            <p>Grátis</p>
+            <button onclick="adicionarAoCarrinho('Paçoca', 0)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="menu-item" data-name="Leite em pó" data-price="0">
+            <h4>Leite em pó</h4>
+            <p>Grátis</p>
+            <button onclick="adicionarAoCarrinho('Leite em pó', 0)">Adicionar ao Carrinho</button>
+        </div>
     </div>
-    <div id="total-carrinho">Total: R$0.00</div>
+</section>
+  <!-- Bebidas -->
+  <h3>Bebidas</h3>
+  <div class="menu-item" data-name="Cerveja Lata 350ml" data-price="7">
+      <h4>Cerveja Lata 350ml</h4>
+      <p>R$7,00</p>
+      <button onclick="adicionarAoCarrinho('Cerveja Lata 350ml', 7)">Adicionar ao Carrinho</button>
+  </div>
+  <div class="menu-item" data-name="Cerveja Lata 350ml (Premium)" data-price="10">
+      <h4>Cerveja Lata 350ml (Premium)</h4>
+      <p>R$10,00</p>
+      <button onclick="adicionarAoCarrinho('Cerveja Lata 350ml (Premium)', 10)">Adicionar ao Carrinho</button>
+  </div>
+  <div class="menu-item" data-name="Cerveja Longneck (Premium)" data-price="13">
+      <h4>Cerveja Longneck (Premium)</h4>
+      <p>R$13,00</p>
+      <button onclick="adicionarAoCarrinho('Cerveja Longneck (Premium)', 13)">Adicionar ao Carrinho</button>
+  </div>
+  <div class="menu-item" data-name="Sucos Naturais 500ml" data-price="15">
+      <h4>Sucos Naturais 500ml</h4>
+      <p>R$15,00</p>
+      <button onclick="adicionarAoCarrinho('Sucos Naturais 500ml', 15)">Adicionar ao Carrinho</button>
+  </div>
+  <div class="menu-item" data-name="Cerveja Longneck (Premium)" data-price="13">
+    <h4>Cerveja Longneck (Premium)</h4>
+    <p>R$13,00</p>
+    <button onclick="adicionarAoCarrinho('Cerveja Longneck (Premium)', 13)">Adicionar ao Carrinho</button>
+</div>
+<div class="menu-item" data-name="Sucos Naturais 500ml" data-price="15">
+    <h4>Sucos Naturais 500ml</h4>
+    <p>R$15,00</p>
+    <button onclick="adicionarAoCarrinho('Sucos Naturais 500ml', 15)">Adicionar ao Carrinho</button>
+</div>
 
-    <!-- Botões para adicionar itens ao carrinho -->
-    <button onclick="adicionarAoCarrinho('Produto 1', 10.00)">Adicionar Produto 1</button>
-    <button onclick="adicionarAoCarrinho('Produto 2', 20.00)">Adicionar Produto 2</button>
+<!-- Caipirinhas -->
+<h3>Caipirinhas</h3>
+<div class="menu-item" data-name="Caipirinha de Limão" data-price="22">
+    <h4>Caipirinha de Limão</h4>
+    <p>R$22,00</p>
+    <button onclick="adicionarAoCarrinho('Caipirinha de Limão', 22)">Adicionar ao Carrinho</button>
+</div>
+<div class="menu-item" data-name="Caipirinha de Abacaxi" data-price="22">
+    <h4>Caipirinha de Abacaxi</h4>
+    <p>R$22,00</p>
+    <button onclick="adicionarAoCarrinho('Caipirinha de Abacaxi', 22)">Adicionar ao Carrinho</button>
+</div>
+<div class="menu-item" data-name="Caipirinha de Morango" data-price="22">
+    <h4>Caipirinha de Morango</h4>
+    <p>R$22,00</p>
+    <button onclick="adicionarAoCarrinho('Caipirinha de Morango', 22)">Adicionar ao Carrinho</button>
+</div>
+<div class="menu-item" data-name="Caipirinha de Frutas Vermelhas" data-price="22">
+    <h4>Caipirinha de Frutas Vermelhas</h4>
+    <p>R$22,00</p>
+    <button onclick="adicionarAoCarrinho('Caipirinha de Frutas Vermelhas', 22)">Adicionar ao Carrinho</button>
+</div>
+<div class="menu-item" data-name="Caipirinha de Maracujá" data-price="22">
+    <h4>Caipirinha de Maracujá</h4>
+    <p>R$22,00</p>
+    <button onclick="adicionarAoCarrinho('Caipirinha de Maracujá', 22)">Adicionar ao Carrinho</button>
+</div>
 
-    <!-- Script JavaScript -->
-    <script>
-        // Função para adicionar um item ao carrinho
-        function adicionarAoCarrinho(nome, preco) {
-            const carrinho = document.getElementById('carrinho-itens');
-            const totalCarrinho = document.getElementById('total-carrinho');
-            
-            const item = document.createElement('div');
-            item.classList.add('carrinho-item');
-            item.innerHTML = `
-                <p>${nome} - R$${preco.toFixed(2)}</p>
-                <button class="delete-button" onclick="removerDoCarrinho(this)">Remover</button>
-            `;
-            carrinho.appendChild(item);
-            
-            // Atualiza o total do carrinho
-            const totalAtual = parseFloat(totalCarrinho.innerText.replace('Total: R$', '')) || 0;
-            totalCarrinho.innerText = `Total: R$${(totalAtual + preco).toFixed(2)}`;
-        }
-        
-        // Função para remover um item do carrinho
-        function removerDoCarrinho(botao) {
-            const carrinho = botao.parentNode.parentNode;
-            const totalCarrinho = document.getElementById('total-carrinho');
-            const item = botao.parentNode;
-            const preco = parseFloat(item.innerText.split('R$')[1]);
-            
-            carrinho.removeChild(item);
-            
-            // Atualiza o total do carrinho
-            const totalAtual = parseFloat(totalCarrinho.innerText.replace('Total: R$', ''));
-            totalCarrinho.innerText = `Total: R$${(totalAtual - preco).toFixed(2)}`;
-        }
-        
-        // Função para limpar o carrinho
-        function limparCarrinho() {
-            const carrinho = document.getElementById('carrinho-itens');
-            const totalCarrinho = document.getElementById('total-carrinho');
-            
-            carrinho.innerHTML = '';
-            totalCarrinho.innerText = 'Total: R$0.00';
-        }
+<!-- Bebidas Especiais -->
+<h3>Bebidas Especiais</h3>
+<div class="menu-item" data-name="Piña Colada" data-price="30">
+    <h4>Piña Colada</h4>
+    <p>R$30,00</p>
+    <button onclick="adicionarAoCarrinho('Piña Colada', 30)">Adicionar ao Carrinho</button>
+</div>
+<div class="menu-item" data-name="Mojito" data-price="32">
+    <h4>Mojito</h4>
+    <p>R$32,00</p>
+    <button onclick="adicionarAoCarrinho('Mojito', 32)">Adicionar ao Carrinho</button>
+</div>
+<div class="menu-item" data-name="Espanhola" data-price="30">
+    <h4>Espanhola</h4>
+    <p>R$30,00</p>
+    <button onclick="adicionarAoCarrinho('Espanhola', 30)">Adicionar ao Carrinho</button>
+</div>
+<div class="menu-item" data-name="Two Lovers" data-price="35">
+    <h4>Two Lovers</h4>
+    <p>R$35,00</p>
+    <button onclick="adicionarAoCarrinho('Two Lovers', 35)">Adicionar ao Carrinho</button>
+</div>
+<div class="menu-item" data-name="Lagoa Azul" data-price="35">
+    <h4>Lagoa Azul</h4>
+    <p>R$35,00</p>
+    <button onclick="adicionarAoCarrinho('Lagoa Azul', 35)">Adicionar ao Carrinho</button>
+</div>
+<div class="menu-item" data-name="Cuba Livre" data-price="30">
+    <h4>Cuba Livre</h4>
+    <p>R$30,00</p>
+    <button onclick="adicionarAoCarrinho('Cuba Livre', 30)">Adicionar ao Carrinho</button>
+</div>
+<div class="menu-item" data-name="Especial da Casa Encantado" data-price="40">
+    <h4>Especial da Casa Encantado</h4>
+    <p>R$40,00</p>
+    <button onclick="adicionarAoCarrinho('Especial da Casa Encantado', 40)">Adicionar ao Carrinho</button>
+</div>
+    </main>
+    <div id="cart-items-container" class="cart-items-container">
+        <div id="cart-items"></div>
+        <h3>Valor Total: $<span id="total-price">0.00</span></h3>
+    </div>
+    <script src="script.js">
+
+    let cart = [];
+let totalPrice = 0.00;
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function () {
+        let productId = this.getAttribute('data-id');
+        let productName = this.getAttribute('data-name');
+        let productPrice = parseFloat(this.getAttribute('data-price'));
+
+        addToCart(productId, productName, productPrice);
+        updateCartCount();
+    });
+});
+
+document.getElementById('cart-btn').addEventListener('click', function () {
+    toggleCartItems();
+});
+
+function addToCart(id, name, price) {
+    let existingProduct = cart.find(product => product.id === id);
+
+    if (existingProduct) {
+        existingProduct.quantity += 1;
+    } else {
+        cart.push({ id, name, price, quantity: 1 });
+    }
+
+    updateTotalPrice();
+}
+
+function updateTotalPrice() {
+    totalPrice = cart.reduce((total, product) => total + (product.price * product.quantity), 0);
+    document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+}
+
+function updateCartCount() {
+    document.getElementById('cart-count').textContent = cart.reduce((total, product) => total + product.quantity, 0);
+}
+
+function toggleCartItems() {
+    let cartItemsContainer = document.getElementById('cart-items-container');
+    cartItemsContainer.style.display = cartItemsContainer.style.display === 'block' ? 'none' : 'block';
+    showCartItems();
+}
+
+function showCartItems() {
+    let cartItemsContainer = document.getElementById('cart-items');
+    cartItemsContainer.innerHTML = ''; // Limpa o conteúdo anterior
+
+    cart.forEach(product => {
+        let itemElement = document.createElement('div');
+        itemElement.textContent = `${product.name} - ${product.quantity} x $${product.price.toFixed(2)}`;
+        cartItemsContainer.appendChild(itemElement);
+    });
+}
     </script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 <header>
         <h1>Restaurante Exemplo</h1>
-        <header>
             <h1>Restaurante Exemplo</h1>
             <div id="cart-icon">
                 <img src="carrinho-icon.png" alt="Ícone do Carrinho">
@@ -16,7 +15,6 @@
             <p>Total: R$<span id="total-carrinho">0.00</span></p>
             <button onclick="finalizarCarrinho()">Finalizar Carrinho</button>
         </section>
-    </html>
     
         <nav>
             <a href="#menu">Cardápio</a>
