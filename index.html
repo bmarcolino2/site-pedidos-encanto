@@ -447,10 +447,10 @@
                 <p>Grátis</p>
                 <button onclick="adicionarAoCarrinho('Granola', 0)">Adicionar ao Carrinho</button>
             </div>
-            <div class="menu-item" data-name="Leite
+            <div class="menu-item" data-name="Leite" 
             <h4>Leite em pó</h4>
             <p>Grátis</p>
-            <button onclick="adicionarAoCarrinho('Leite em pó', 0)">Adicionar ao Carrinho</button>
+            <button onclick="adicionarAoCarrinho (Leite em pó 0);>Adicionar ao Carrinho</button>
         </div>
         <div class="menu-item" data-name="Leite condensado" data-price="0">
             <h4>Leite condensado</h4>
@@ -629,6 +629,27 @@ function showCartItems() {
         cartItemsContainer.appendChild(itemElement);
     });
 }
+
+let total = 0;
+
+function adicionarPedido(nome, preco) {
+    const listaPedidos = document.getElementById('lista-pedidos');
+    const pedidoItem = document.createElement('li');
+    pedidoItem.textContent = `${nome} - R$${preco.toFixed(2)}`;
+    listaPedidos.appendChild(pedidoItem);
+
+    total += preco;
+    document.getElementById('total').textContent = total.toFixed(2);
+}
+
+function finalizarPedido() {
+    alert(`Pedido finalizado! Total: R$${total.toFixed(2)}`);
+    const listaPedidos = document.getElementById('lista-pedidos');
+    listaPedidos.innerHTML = '';
+    total = 0;
+    document.getElementById('total').textContent = total.toFixed(2);
+}
+
     </script>
 </body>
 </html>
