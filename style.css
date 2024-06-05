@@ -4,14 +4,14 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
+    background-color:#FFF0D2;
     margin: 0;
     padding: 0;
     color: #333;
 }
 
 header {
-    background-color: #4b0082;
+    background-color: #406D59;
     color: white;
     padding: 1em;
     text-align: center;
@@ -22,14 +22,14 @@ nav {
 }
 
 nav a {
-    color: white;
+    color: #690072;
     margin: 0 10px;
     text-decoration: none;
     font-weight: bold;
 }
 
 nav a:hover {
-    color: #98fb98; 
+    color: white
 }
 
 main {
@@ -37,10 +37,13 @@ main {
     justify-content: space-around;
     padding: 20px;
     flex-wrap: wrap;
+    background-color: #FFF0D2;
+    border-style: dashed;
+    color: black;
 }
 
 section {
-    background-color: #fff;
+    background-color: #406D59;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -79,12 +82,12 @@ button {
 }
 
 button:hover {
-    background-color: #6a0dad; /* Tom mais claro de roxo */
+    background-color: #6a0dad;
     transform: scale(1.05);
 }
 
 .delete-button {
-    background-color: #8b0000; /* Vermelho escuro */
+    background-color: #4b0082 ;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
@@ -95,11 +98,16 @@ button:hover {
 }
 
 .delete-button:hover {
-    background-color: #a52a2a;
+    background-color: #4b0082;
     transform: scale(1.1);
 }
 
 #total-carrinho {
     font-weight: bold;
     color: #008000;
+}
+
+* nav {
+    background-color: #f8f8f8;
+    
 }

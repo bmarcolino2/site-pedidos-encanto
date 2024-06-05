@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+<header>
+ <!-- Sessão "Carrinho" -->
+ <section class="carrinho" id="carrinho">
+    <div>
+        <h2>Carrinho</h2>
+        <div id="carrinho-items"></div>
+        <p id="total-carrinho">Total: R$0,00</p>
+    </div>
+</section>
+
+</header>
+
+
+</body>
+</html>
