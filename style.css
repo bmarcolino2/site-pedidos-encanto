@@ -3,8 +3,8 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color:#FFF0D2;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f8f8;
     margin: 0;
     padding: 0;
     color: #333;
@@ -13,8 +13,9 @@ body {
 header {
     background-color: #406D59;
     color: white;
-    padding: 1em;
+    padding: 1em 0;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav {
@@ -22,14 +23,14 @@ nav {
 }
 
 nav a {
-    color: #690072;
+    color: #FFF0D2;;
     margin: 0 10px;
     text-decoration: none;
     font-weight: bold;
 }
 
 nav a:hover {
-    color: white
+    color: rgb(240, 239, 239);
 }
 
 main {
@@ -38,17 +39,20 @@ main {
     padding: 20px;
     flex-wrap: wrap;
     background-color: #FFF0D2;
-    border-style: dashed;
-    color: black;
 }
 
 section {
-    background-color: #406D59;
+    background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 45%;
     margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+section:hover {
+    transform: scale(1.02);
 }
 
 h2 {
@@ -79,15 +83,17 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 button:hover {
-    background-color: #6a0dad;
+    background-color: #6a0dad; /* Tom mais claro de roxo */
     transform: scale(1.05);
 }
 
 .delete-button {
-    background-color: #4b0082 ;
+    background-color: #8b0000; /* Vermelho escuro */
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
@@ -98,16 +104,39 @@ button:hover {
 }
 
 .delete-button:hover {
-    background-color: #4b0082;
+    background-color: #a52a2a;
     transform: scale(1.1);
 }
 
 #total-carrinho {
     font-weight: bold;
-    color: #008000;
+    color: #4b0082;;
+    margin-top: 20px;
 }
 
-* nav {
-    background-color: #f8f8f8;
-    
+.cart-items-container {
+    display: none;
+    background-color: #0f0d0d;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
 }
+
+@media (min-width: 768px) {
+    main {
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    section {
+        width: 45%;
+    }
+}
+div {
+color:#4b0082;
+}
+
